@@ -1,0 +1,6 @@
+@TranscribeVideo_HostAddress = http://localhost:5145
+
+GET {{TranscribeVideo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

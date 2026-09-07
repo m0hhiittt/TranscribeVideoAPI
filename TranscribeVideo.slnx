@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TranscribeVideo.Core/TranscribeVideo.Core.csproj" />
+  <Project Path="TranscribeVideo.Infrastructure/TranscribeVideo.Infrastructure.csproj" />
+  <Project Path="TranscribeVideo/TranscribeVideo.csproj" />
+</Solution>
