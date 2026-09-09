@@ -8,7 +8,7 @@ namespace TranscribeVideo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class VideoController : ControllerBase
     {
         private readonly IVideoService _videoService;
@@ -24,7 +24,7 @@ namespace TranscribeVideo.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload([FromForm] UploadVideoDto dto)
         {
-            //var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
             var result = await _videoService.UploadAsync(5, dto);
 

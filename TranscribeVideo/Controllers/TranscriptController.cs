@@ -8,7 +8,7 @@ namespace TranscribeVideo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class TranscriptController : ControllerBase
     {
         private readonly ITranscriptionEngine _transcriptionEngine;
@@ -59,7 +59,6 @@ namespace TranscribeVideo.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                // Thrown by the transcription engine when the whisper process fails or can't start.
                 return StatusCode(500, new { message = "Transcription failed.", detail = ex.Message });
             }
             finally

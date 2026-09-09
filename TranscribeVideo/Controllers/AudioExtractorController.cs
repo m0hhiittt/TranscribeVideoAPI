@@ -6,7 +6,7 @@ namespace TranscribeVideo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class AudioController : ControllerBase
     {
         private readonly string _storageRoot;
@@ -17,10 +17,6 @@ namespace TranscribeVideo.Controllers
                 ?? Path.Combine(Directory.GetCurrentDirectory(), "uploads");
         }
 
-        /// <summary>
-        /// Accepts a video file, extracts its audio track (16kHz mono WAV) via ffmpeg,
-        /// and returns the resulting audio file.
-        /// </summary>
         [RequestSizeLimit(2_147_483_648)]
         [RequestFormLimits(MultipartBodyLengthLimit = 2_147_483_648)]
         [DisableRequestSizeLimit]
@@ -53,12 +49,10 @@ namespace TranscribeVideo.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                // Thrown by AudioExtractor when ffmpeg fails or can't start.
                 return StatusCode(500, new { message = "Audio extraction failed.", detail = ex.Message });
             }
             finally
             {
-                // Clean up the temporary uploaded video; only the extracted audio is kept.
                 if (System.IO.File.Exists(tempVideoPath))
                 {
                     System.IO.File.Delete(tempVideoPath);

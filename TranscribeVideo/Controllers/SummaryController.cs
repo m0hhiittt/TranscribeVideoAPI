@@ -6,7 +6,7 @@ namespace TranscribeVideo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class SummaryController : ControllerBase
     {
         private readonly ISummaryService _summaryService;
